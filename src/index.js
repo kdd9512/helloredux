@@ -59,6 +59,10 @@ const reducer = (state = [], action) => {
             // 아래 작성한 대로 기존 배열의 값을 가지고(...state), 배열을 새로 만드는 방식을 사용해야 함.
             return [ {text: action.text, id: Date.now()}, ...state];
         case DEL:
+            // !! 중요
+            // 이곳에서 state.splice(action.id)로 기존 배열의 값을 제거하면 안된다(mutate 위반).
+            // 아래 작성한 대로 filter 를 이용하여, 기존 배열의 값(toD0.id)과 deleteTod0 에서 가져온 action.id를 비교하여
+            // 값을 필터링, 새 배열을 재작성 하는 방식을 이용해야 함.
             return state.filter(toDo => toDo.id !== action.id);
         default:
             return state;
