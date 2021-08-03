@@ -55,11 +55,11 @@ const reducer = (state = [], action) => {
     switch (action.type) {
         case ADD:
             // !! 중요
-            // 이곳에서 state.push(action.text)로 기존 배열에 값을 추가하면 안된다(이를 mutate라고 함).
+            // 이곳에서 state.push(action.text)로 기존 배열에 값을 추가하면 안된다(이를 mutate 라고 함).
             // 아래 작성한 대로 기존 배열의 값을 가지고(...state), 배열을 새로 만드는 방식을 사용해야 함.
             return [ {text: action.text, id: Date.now()}, ...state];
         case DEL:
-            return [];
+            return state.filter(toDo => toDo.id !== action.id);
         default:
             return state;
     }
@@ -99,7 +99,7 @@ const dispatchAddTodo = text => {
 };
 
 const dispatchDelTodo = e => {
-    const id = e.target.parentNode.id;
+    const id = parseInt(e.target.parentNode.id);
     store.dispatch(delTodo(id));
 };
 
