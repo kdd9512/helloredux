@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import {createStore} from "redux";
+import {Provider} from "react-redux";
+import store from "./store";
 
 
 // 01. intro
@@ -123,4 +125,9 @@ import {createStore} from "redux";
 
 
 //03. REACT REDUX
-ReactDOM.render(<App></App>, document.getElementById("root"));
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById("root")
+);
