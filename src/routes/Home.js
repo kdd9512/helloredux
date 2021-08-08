@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {add} from "../store";
 import TODO from "../components/TODO";
 
-function Home({toDos, addTodo}) {
-    const [text, setText] = useState("");
+function Home ({toDos, addTodo}) {
+    const [text, setText]  = useState("");
 
     function onChange(e) {
         setText(e.target.value);
@@ -20,9 +20,9 @@ function Home({toDos, addTodo}) {
         <>
             <h1>TO DO</h1>
             <form onSubmit={onSubmit}>
-                <input type="text" value={text} placeholder="write to do" onChange={onChange}/>
+               <input type="text" value={text} placeholder="write to do" onChange={onChange}/>
                 <button>add</button>
-            </form>
+           </form>
             <ul>
                 {toDos.map(
                     toDo => (
